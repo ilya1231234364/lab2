@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>Change</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__links">
+        <a href="index.html">Home</a><a href="change.html">Change</a>
+        <a href="create.html">Create</a>
+      </div>
+    </header>
+    <h2 class="title__link">Create</h2>
+
+    <div class="mb-3">
+      <div>
+        <label class="form-label">Item Quantity</label>
+        <input type="text" class="form-control" id="quantity" />
+        <label class="form-label">Item Name</label>
+        <input type="text" class="form-control" id="name" />
+        <button class="btn btn-success" onClick="sendInventory()">
+          CREATE
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const sendInventory = async () => {
+        try {
+          const quantity = document.getElementById("quantity").value;
+          const name = document.getElementById("name").value;
+
+          if (!quantity || !name) {
+            alert("some field is empty");
+            return false;
+          }
+          const res = await axios({
+            method: "POST",
+            url: "/inventory",
+            data: {
+              name,
+              quantity,
+            },
+          })
+            .then((result) => {
+              console.log(result);
+              alert("success");
+            })
+            .catch((e) => alert("Bad values"));
+          return false;
+        } catch (err) {
+          alert(err);
+          return false;
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Source+Sans+Pro:wght@300;400&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.header {
+	width: 100%;
+	height: 70px;
+	background-color: rgb(238, 203, 203);
+	padding: 7px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.title__link {
+	margin-top: 20px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.cards {
+	width: 100%;
+	padding: 70px 100px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-column-gap: 20px;
+	grid-row-gap: 10px;
+}
+.header__links {
+	display: flex;
+	height: 100%;
+	align-items: center;
+}
+.header__links a {
+	margin-right: 30px;
+	font-family: "Open Sans";
+	color: #000;
+	font-size: 24px;
+	text-decoration: none;
+}
+.header__links a:hover {
+	text-decoration: none;
+	color: #000;
+}
+.card {
+	width: 300px;
+	padding: 30px;
+}
+.card__header {
+	margin-bottom: 10px;
+}
+.inventory__surname,
+.inventory__name {
+	font-size: 24px;
+}
+.inventory__id,
+span {
+	font-size: 18px;
+}
+.card__header {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.card__body {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-around;
+}
+.card__top {
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+.delete {
+	margin-top: 20px;
+}
+.mb-3 {
+	width: 500px;
+	display: flex;
+	margin-left: 100px;
+	margin-top: 50px;
+	margin: 0 auto;
+}
+.mb-3 div {
+	width: 100%;
+	text-align: center;
+}
+.form-control {
+	width: 100%;
+}
+.form-label {
+	font-size: 24px;
+}
+.btn {
+	width: 100%;
+	margin-top: 30px;
+}

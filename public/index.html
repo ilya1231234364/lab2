@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Home</title>
+  </head>
+  <body class="bg-light">
+    <header class="header">
+      <div class="header__links">
+        <a href="index.html">Home</a><a href="change.html">Change</a>
+        <a href="create.html">Create</a>
+      </div>
+    </header>
+    <h2 class="title__link">Home</h2>
+    <div class="cards"></div>
+    <script>
+      const getInventory = async () => {
+        try {
+          const res = await axios({
+            method: "GET",
+            url: "/inventory",
+          })
+            .then((result) => {
+              const docInventory = document.querySelector(".cards");
+              const inventory = result.data.data.data;
+              console.log(inventory);
+              for (item of inventory) {
+                docInventory.innerHTML += `			             <div class="card">
+			                 <div class="card__header">
+			                     <span class="inventory__name">${item.name}</span>
+			                 </div>
+				<div class="card__body">
+					<div class="card__top">
+						<span>Quantity: </span><span class="item__quantity"> ${item.quantity}</span>
+					</div>
+
+					<div class="card__bottom">
+						<span>ID:</span> <span class="inventory__id">${item._id}</span>
+					</div>
+
+					<button class="delete btn btn-danger" onclick="deleteInventory('${item._id}')">Delete Item</button>
+				</div>
+			</div>`;
+              }
+            })
+            .catch((e) => alert("Bad values"));
+          return false;
+        } catch (err) {
+          alert(err);
+          return false;
+        }
+      };
+      getInventory();
+
+      const deleteInventory = async function (id) {
+        console.log(id);
+        try {
+          const res = await axios({
+            method: "DELETE",
+            url: `/inventory/${id}`,
+          })
+            .then((result) => {
+              alert("Success!", {
+                status: "success",
+              });
+              window.setTimeout(() => {
+                location.assign("/");
+              }, 1000);
+            })
+            .catch((e) => alert(e));
+          return false;
+        } catch (e) {
+          console.log(e);
+          alert("That's not fine.", {
+            status: "fail",
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
